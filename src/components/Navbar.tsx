@@ -4,7 +4,8 @@ import { BiShoppingBag } from "react-icons/bi";
 
 function Navbar() {
   const { cart } = useCart();
-  const cartCount = cart.reduce((sum, item) => sum + item.qty, 0);
+  // const cartCount = cart.reduce((sum, item) => sum + item.qty, 0);
+  const cartCount = cart.length;
 
   return (
     <nav

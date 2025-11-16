@@ -1,7 +1,6 @@
 import { useCart } from "../context/CartContext";
 import { Link } from "react-router-dom";
 import {
-  IoTrashOutline,
   IoAdd,
   IoRemove,
   IoCartOutline,
@@ -16,6 +15,7 @@ function Cart() {
   const [removing, setRemoving] = useState<number | null>(null);
 
   const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
+  const cartCount = cart.length;
   const subtotal = cart.reduce(
     (sum, product) => sum + product.price * product.qty,
     0
@@ -33,11 +33,36 @@ function Cart() {
   return (
     <div className="min-h-screen from-gray-50 to-blue-50/30 p-4 sm:p-6 lg:p-8">
       <div className="pt-20">
-        
         <div className="max-w-7xl mx-auto">
-          <h1 className="flex items-center gap-3 text-3xl sm:text-4xl font-bold text-gray-900 mb-6 sm:mb-8">
-            <CgShoppingCart /> Shopping Cart ({totalItems})
-          </h1>
+          <div className="w-full">
+            {/* Large Device */}
+            <div className="hidden sm:flex items-center justify-between gap-4 flex-wrap">
+              <h1 className="flex items-center gap-2 md:gap-3 text-xl md:text-2xl lg:text-3xl font-bold text-gray-900">
+                <CgShoppingCart className="text-2xl md:text-3xl lg:text-4xl" />
+                Shopping Cart
+              </h1>
+              <span className="text-sm md:text-base font-medium text-gray-600 bg-gray-50 px-3 md:px-4 py-1.5 md:py-2 rounded-full border border-gray-200">
+                <span className="text-gray-700">{cartCount}</span> Products •{" "}
+                <span className="text-gray-700">{totalItems}</span> Items
+              </span>
+            </div>
+
+            {/* Small Devices */}
+            <div className="flex sm:hidden flex-col gap-2">
+              <h1 className="flex items-center gap-2 text-lg font-bold text-gray-900">
+                <CgShoppingCart className="text-xl" />
+                Shopping Cart
+              </h1>
+              <div className="flex items-center gap-2 text-xs font-medium text-gray-600">
+                <span className="bg-gray-50 px-2.5 py-1 rounded-md border border-gray-200">
+                  {cartCount} Products
+                </span>
+                <span className="bg-gray-50 px-2.5 py-1 rounded-md border border-gray-200">
+                  {totalItems} Items
+                </span>
+              </div>
+            </div>
+          </div>
 
           {cart.length === 0 ? (
             <div className="bg-white rounded-2xl shadow-lg p-12 text-center">
@@ -56,68 +81,73 @@ function Cart() {
                 {cart.map((product) => (
                   <div
                     key={product.id}
-                    className={`cart-remove-animation bg-white rounded-xl shadow-md p-4 sm:p-6 transition-shadow
-                    ${removing === product.id ? "remove" : ""}`}
+                    className={`cart-remove-animation bg-white rounded-xl shadow-md p-3 sm:p-4 transition-all
+  ${removing === product.id ? "remove" : ""}`}
                   >
-                    <div className="flex gap-4">
+                    <div className="flex items-center justify-between gap-3 sm:gap-4">
+                      {/* Product Image */}
                       <Link
                         to={`/product-details/${product.id}`}
-                        aria-label={`View details for ${product.title}`}
+                        className=" h-16 sm:h-20 bg-gray-50 rounded-lg p-2 flex items-center justify-center"
                       >
-                        <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gray-50 rounded-lg p-2">
-                          <img
-                            src={product.image}
-                            alt={product.title}
-                            className="w-full h-full object-contain"
-                          />
-                        </div>
+                        <img
+                          src={product.image}
+                          alt={product.title}
+                          className="w-full h-full object-contain"
+                        />
                       </Link>
 
+                      {/* Title + Price */}
                       <div className="flex-1 min-w-0">
-                        <Link
-                          to={`/product-details/${product.id}`}
-                          aria-label={`View details for ${product.title}`}
-                        >
-                          <h2 className="font-semibold text-gray-900 mb-2 line-clamp-2 text-sm sm:text-base">
+                        <Link to={`/product-details/${product.id}`}>
+                          <h2 className="font-semibold text-gray-900 text-sm sm:text-base line-clamp-1">
                             {product.title}
                           </h2>
                         </Link>
 
-                        <div className="flex flex-wrap items-center justify-between gap-3">
-                          <div className="flex items-center gap-2 bg-gray-50 rounded-lg p-1">
-                            <button
-                              disabled={product.qty === 1}
-                              onClick={() => updateQty(product.id, "dec")}
-                              className={`w-8 h-8 flex items-center justify-center rounded transition active:scale-95
-                                ${product.qty === 1 ? "opacity-40 cursor-not-allowed" : "hover:bg-gray-200"}`}
-                            >
-                              <IoRemove />
-                            </button>
+                        <p className="text-sm text-gray-600 mt-1">
+                          ₹{product.price.toLocaleString("en-IN")} × {product.qty} ={" "}
+                          <span className="font-semibold text-gray-900">
+                             ₹{(product.price * product.qty).toLocaleString("en-IN")}
+                          </span>
+                        </p>
+                      </div>
 
-                            <span className="font-bold text-gray-900 text-center">
-                              {product.qty}
-                            </span>
+                      <div className="flex items-center gap-3 sm:gap-4">
+                        {/* Quantity Controls */}
+                        <div className="flex items-center gap-1 bg-gray-100 rounded-lg px-2 py-1">
+                          <button
+                            disabled={product.qty === 1}
+                            onClick={() => updateQty(product.id, "dec")}
+                            className={`w-7 h-7 flex items-center justify-center rounded
+            ${
+              product.qty === 1
+                ? "opacity-40 cursor-not-allowed"
+                : "hover:bg-gray-200"
+            }`}
+                          >
+                            <IoRemove />
+                          </button>
 
-                            <button
-                              onClick={() => updateQty(product.id, "inc")}
-                              className="w-8 h-8 flex items-center justify-center hover:bg-gray-200 rounded transition active:scale-95"
-                            >
-                              <IoAdd />
-                            </button>
-                          </div>
-
-                          <p className="text-lg sm:text-xl font-bold text-gray-900">
-                            ₹{(product.price * product.qty).toFixed(2)}
-                          </p>
+                          <span className="font-semibold text-gray-900 text-center">
+                            {product.qty}
+                          </span>
 
                           <button
-                            onClick={() => handleRemove(product.id)}
-                            className="flex items-center gap-1 text-red-500 hover:text-red-600 text-sm font-medium hover:scale-105 transition"
+                            onClick={() => updateQty(product.id, "inc")}
+                            className="w-7 h-7 flex items-center justify-center hover:bg-gray-200 rounded"
                           >
-                            <IoTrashOutline className="text-lg" />
-                            <span className="hidden sm:inline">Remove</span>
+                            <IoAdd />
                           </button>
                         </div>
+
+                        {/* Remove Button */}
+                        <button
+                          onClick={() => handleRemove(product.id)}
+                          className="bg-red-500 text-white text-xs sm:text-sm px-3 py-1.5 rounded-lg hover:bg-red-600 transition"
+                        >
+                          Remove
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -138,17 +168,21 @@ function Cart() {
                       </span>
                     </div>
                     <div className="flex justify-between text-gray-600">
-                      <span>Shipping</span>
-                      <span className="font-semibold">--</span>
+                      <span>Shipping Charges</span>
+                      <span className="font-semibold text-xl text-green-600 text-bold">
+                        Free
+                      </span>
                     </div>
                     <div className="flex justify-between text-gray-600">
-                      <span>Tax</span>
-                      <span className="font-semibold">--</span>
+                      <span>Delivery Charges</span>
+                      <span className="font-semibold text-xl text-green-600 text-bold">
+                        Free
+                      </span>
                     </div>
                   </div>
 
                   <div className="flex justify-between text-xl font-bold text-gray-900 mb-6">
-                    <span>Total</span>
+                    <span>To Pay</span>
                     <span>₹{total.toFixed(2)}</span>
                   </div>
 
