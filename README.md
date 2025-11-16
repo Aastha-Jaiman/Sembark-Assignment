@@ -2,15 +2,11 @@
 Sembark Store is a responsive e-commerce web application built using React, TypeScript, Vite, Tailwind CSS, featuring product listing, search, sorting, category filters, cart management, and a clean accessible UI.  
 This project uses the **FakeStore API** for product data and includes **Cypress** setup for end-to-end testing.
 
----
 
 📦 **GitHub Repository:** 🔗 https://github.com/Aastha-Jaiman/Sembark-Assignment
 
----
-
 🚀 **Live Demo:** 🔗 https://sembark-store.vercel.app/
 
----
 
 ## 🚀 Features
 
@@ -32,12 +28,11 @@ This project uses the **FakeStore API** for product data and includes **Cypress*
 - Includes Cypress project setup for UI and E2E testing
 - Tests can run in UI mode or headless mode
 
----
 
 ## 🛠 Tech Stack
 React, TypeScript, TailwindCSS, React Router, FakeStore API , Cypress (E2E Testing)
 
----
+
 ## 📂 Project Structure
 Sembark-Assignment/
 ├── src/                            # Main application source code
@@ -70,7 +65,6 @@ Sembark-Assignment/
 ├── tsconfig.json                   # TypeScript configuration
 └── vite.config.ts                  # Vite bundler config
 
----
 
 ## 🧩 Setup & Installation
 
@@ -87,7 +81,6 @@ Step-3 Start development server
 ## App runs at:
 👉 http://localhost:5173/
 
----
 
 ## 🧪 Running Cypress Tests (Optional)
 
@@ -111,19 +104,12 @@ Step-3 After Cypress opens:
 3. Click Start E2E Testing
 4. Run any test listed inside the /cypress/e2e folder
 
----
 
 ### Run Cypress in headless mode (optional)
 npx cypress run
 
----
 
 🌐 API Used
 
 ### FakeStore Products API:
 🔗 https://fakestoreapi.com/products
-
----
-
-👩‍💻 Author Name: Aastha Jaiman
-🔗 GitHub Profile: https://github.com/Aastha-Jaiman
