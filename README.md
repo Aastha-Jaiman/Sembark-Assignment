@@ -75,7 +75,7 @@ Step-1 Clone the repository
 
 Step-2 Install dependencies:
 ```
-    npm install
+ npm install
 ```
 Step-3 Start the development server:
 
