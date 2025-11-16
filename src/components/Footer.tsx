@@ -19,7 +19,7 @@ export default function Footer() {
             className="flex items-center gap-2"
           >
             <img
-              src="/sembark-logo.png"
+              src="/Sembark-Logo.png"
               alt="Sembark Logo"
               className="w-8 sm:w-10 object-contain"
             />

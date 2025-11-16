@@ -19,7 +19,7 @@ function Navbar() {
           className="flex items-center gap-2 sm:gap-3"
         >
           <img
-            src="/sembark-logo.png"
+            src="/Sembark-Logo.png"
             alt="Sembark Logo"
             className="w-8 sm:w-10 md:w-10 object-contain"
           />
