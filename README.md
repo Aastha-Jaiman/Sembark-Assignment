@@ -32,7 +32,7 @@ This project uses the **FakeStore API** for product data and includes **Cypress*
 ## 🛠 Tech Stack
 React, TypeScript, TailwindCSS, React Router, FakeStore API , Cypress (E2E Testing)
 
-
+```
 ## 📂 Project Structure
 Sembark-Assignment/
 ├── src/                            # Main application source code
@@ -64,7 +64,7 @@ Sembark-Assignment/
 ├── tailwind.config.js              # Tailwind configuration
 ├── tsconfig.json                   # TypeScript configuration
 └── vite.config.ts                  # Vite bundler config
-
+```
 
 ## 🧩 Setup & Installation
 
@@ -106,10 +106,8 @@ Step-3 After Cypress opens:
 
 
 ### Run Cypress in headless mode (optional)
-npx cypress run
+- npx cypress run
 
 
-🌐 API Used
-
-### FakeStore Products API:
-🔗 https://fakestoreapi.com/products
+### 🌐 API Used
+- FakeStore Products API: 🔗 https://fakestoreapi.com/products
