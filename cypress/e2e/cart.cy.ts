@@ -4,3 +4,4 @@ describe("Cart Page", () => {
     cy.contains("Total");
   });
 });
+ 

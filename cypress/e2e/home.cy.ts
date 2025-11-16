@@ -4,3 +4,4 @@ describe("Home Page", () => {
     cy.contains("Total Products");
   });
 });
+ 

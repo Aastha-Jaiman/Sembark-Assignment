@@ -8,3 +8,4 @@ describe("Product Detail Page", () => {
     cy.contains("Back to Home");  
   });
 });
+ 
