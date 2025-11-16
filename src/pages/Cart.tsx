@@ -88,7 +88,7 @@ function Cart() {
                       {/* Product Image */}
                       <Link
                         to={`/product-details/${product.id}`}
-                        className=" h-16 sm:h-20 bg-gray-50 rounded-lg p-2 flex items-center justify-center"
+                        className="w-20 h-20 sm:w-24 sm:h-24 bg-gray-50 rounded-lg p-2 flex items-center justify-center border border-gray-200"
                       >
                         <img
                           src={product.image}

@@ -83,7 +83,7 @@ export default function ProductDetail() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-6 sm:p-8 lg:p-5">
               
               {/* Left: Image */}
-              <figure className="flex items-center justify-center rounded-lg p-8 lg:p-12">
+              <figure className="flex items-center justify-center rounded-lg p-8 lg:p-12 bg-gray-50 border border-gray-200">
                 <img
                   src={product.image}
                   alt={`Image of ${product.title}`}
@@ -95,7 +95,7 @@ export default function ProductDetail() {
               {/* Right: Product Info */}
               <section className="flex flex-col justify-between space-y-4">
                 
-                <span className="inline-block px-3 py-1 bg-blue-50 text-blue-700 text-xs font-medium rounded-full uppercase tracking-wide">
+                <span className="inline-block w-fit px-3 py-1 bg-blue-50 text-blue-700 text-xs font-medium rounded-full uppercase tracking-wide">
                   {product.category}
                 </span>
 
