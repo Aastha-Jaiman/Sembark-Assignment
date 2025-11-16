@@ -73,22 +73,26 @@ Step-1 Clone the repository
 - git clone https://github.com/Aastha-Jaiman/Sembark-Assignment.git
 - cd Sembark-Assignment
 
-Step-2 Install dependencies
-- npm install
+Step-2 Install dependencies:
+```
+    npm install
+```
+Step-3 Start the development server:
 
-Step-3 Start development server
-- npm run dev
-
-Step-4 
-    ```
-    http://localhost:5173/
-    ```
+```
+ npm run dev
+```
+Step-4 Open the application in your browser:
+```
+ http://localhost:5173/
+```
 
 ## 🧪 Running Cypress Tests (Optional)
 
 Step-1 Open Cypress Test Runner
-- npx cypress open
-
+```
+ npx cypress open
+```
 Step-2 Running Cypress Tests
 - Important: Run Cypress in a second terminal
 - To execute Cypress tests properly, you need two running terminals:
@@ -108,8 +112,9 @@ Step-3 After Cypress opens:
 
 
 ### Run Cypress in headless mode (optional)
-- npx cypress run
-
+```
+ npx cypress run
+```
 
 ### 🌐 API Used
 - FakeStore Products API: 🔗 https://fakestoreapi.com/products
