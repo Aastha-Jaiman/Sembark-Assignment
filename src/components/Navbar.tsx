@@ -13,17 +13,19 @@ function Navbar() {
       aria-label="Main Navigation"
     >
       <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-
         <Link
           to="/"
           aria-label="Go to Home page"
-          className="flex items-center"
+          className="flex items-center gap-2 sm:gap-3"
         >
           <img
-            src="/Sembark-Logo.png"
+            src="/sembark-logo.png"
             alt="Sembark Logo"
-            className="filter invert brightness-100 w-28 sm:w-32"
+            className="w-8 sm:w-10 md:w-10 object-contain"
           />
+          <h2 className="font-bold text-lg sm:text-xl tracking-wide">
+            SEMBARK
+          </h2>
         </Link>
 
         <div className="flex items-center gap-8">
@@ -31,7 +33,9 @@ function Navbar() {
             to="/"
             className={({ isActive }) =>
               `text-sm sm:text-base font-medium transition ${
-                isActive ? "underline underline-offset-4" : "hover:text-gray-200"
+                isActive
+                  ? "underline underline-offset-4"
+                  : "hover:text-gray-200"
               }`
             }
             aria-label="Navigate to Home"
@@ -39,10 +43,7 @@ function Navbar() {
             Home
           </NavLink>
 
-          <NavLink
-            to="/cart"
-            className="relative"
-          >
+          <NavLink to="/cart" className="relative">
             <span className="text-2xl font-bold">
               <BiShoppingBag />
             </span>
@@ -56,7 +57,6 @@ function Navbar() {
               </span>
             )}
           </NavLink>
-
         </div>
       </div>
     </nav>
