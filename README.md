@@ -25,15 +25,16 @@ This project uses the **FakeStore API** for product data and includes **Cypress*
 - Uses semantic HTML and ARIA labels for improved accessibility
 
 ### 🧪 Cypress Test Support
-- Includes Cypress project setup for UI and E2E testing
+- Includes Cypress project setup for E2E testing
 - Tests can run in UI mode or headless mode
-
 
 ## 🛠 Tech Stack
 React, TypeScript, TailwindCSS, React Router, FakeStore API , Cypress (E2E Testing)
 
-```
 ## 📂 Project Structure
+what the main folders and files do:
+
+```
 Sembark-Assignment/
 ├── src/                            # Main application source code
 │   ├── components/                 # Reusable UI components
@@ -78,9 +79,10 @@ Step-2 Install dependencies
 Step-3 Start development server
 - npm run dev
 
-## App runs at:
-👉 http://localhost:5173/
-
+Step-4 
+    ```
+    http://localhost:5173/
+    ```
 
 ## 🧪 Running Cypress Tests (Optional)
 
@@ -88,7 +90,7 @@ Step-1 Open Cypress Test Runner
 - npx cypress open
 
 Step-2 Running Cypress Tests
-📌 Important: Run Cypress in a second terminal
+- Important: Run Cypress in a second terminal
 - To execute Cypress tests properly, you need two running terminals:
 
         Terminal 1: Start the app
