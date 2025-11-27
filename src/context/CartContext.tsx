@@ -14,6 +14,12 @@ type CartItem = {
   qty: number;
 };
 
+type WishlistItem = {
+  id: number;
+  title: string;
+  price: number;
+};
+
 type CartContextType = {
   cart: CartItem[];
   addToCart: (item: CartItem) => void;
@@ -23,7 +29,15 @@ type CartContextType = {
   updateQty: (id: number, type: "inc" | "dec") => void;
 };
 
+type WishlistContextType = {
+  wishlist: WishlistItem[];
+  addToWishlist: (item: WishlistItem) => void;
+  isInWishlist: (id: number) => boolean;
+};
+
 const CartContext = createContext<CartContextType | null>(null);
+
+const WishlistContext = createContext<WishlistContextType | null>(null);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cart, setCart] = useState<CartItem[]>(() => {
@@ -85,5 +99,30 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     </CartContext.Provider>
   );
 };
+export const WishlistProvider = ({ children }: { children: ReactNode }) => {
+  const [wishlist, setWishlist] = useState<WishlistItem[]>([]);
+
+  const addToWishlist = (item: WishlistItem) => {
+    setWishlist((prev) => {
+      if (prev?.some((i) => i.id === item.id)) return prev;
+      return prev ? [...prev, item] : [item];
+    });
+  };
+
+  const isInWishlist = (id: number) => wishlist?.some((i) => i.id === id);
+
+  return (
+    <WishlistContext.Provider
+      value={{
+        wishlist,
+        addToWishlist,
+        isInWishlist,
+      }}
+    >
+      {children}
+    </WishlistContext.Provider>
+  );
+};
 
 export const useCart = () => useContext(CartContext)!;
+export const useWishlist = () => useContext(WishlistContext)!;

@@ -1,12 +1,13 @@
 import { Link, NavLink } from "react-router-dom";
-import { useCart } from "../context/CartContext";
+import { useCart, useWishlist } from "../context/CartContext";
 import { BiShoppingBag } from "react-icons/bi";
 
 function Navbar() {
   const { cart } = useCart();
+  const { wishlist } = useWishlist();
   // const cartCount = cart.reduce((sum, item) => sum + item.qty, 0);
   const cartCount = cart.length;
-
+  const wishlistCount = wishlist ? wishlist.length : 0;
   return (
     <nav
       className="bg-[#31326F] text-white fixed top-0 left-0 w-full z-50 shadow-md"
@@ -54,6 +55,20 @@ function Navbar() {
                 aria-live="polite"
               >
                 {cartCount}
+              </span>
+            )}
+          </NavLink>
+          <NavLink to="/cart" className="relative">
+            <span className="text-2xl font-bold">
+              wishlist
+            </span>
+
+            {wishlistCount > 0 && (
+              <span
+                className="absolute -top-2 -right-3 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full"
+                aria-live="polite"
+              >
+                {wishlistCount}
               </span>
             )}
           </NavLink>

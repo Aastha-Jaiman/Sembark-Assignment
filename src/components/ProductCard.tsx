@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { useCart } from "../context/CartContext";
-import { BiCartAdd, BiStar } from "react-icons/bi";
+import { useCart, useWishlist } from "../context/CartContext";
+import { BiCartAdd, BiHeart, BiStar } from "react-icons/bi";
 
 type Product = {
   id: number;
@@ -12,15 +12,32 @@ type Product = {
 
 export default function ProductCard({ product }: { product: Product }) {
   const { addToCart, isInCart, getItemQty, updateQty } = useCart();
+  const { addToWishlist, isInWishlist } = useWishlist();
 
   const inCart = isInCart(product.id);
   const qty = getItemQty(product.id);
 
+  const isThisInWishlist = isInWishlist(product.id);
+
   return (
-    <article
-      className="group block border border-gray-200 rounded-xl overflow-hidden bg-white hover:shadow-xl hover:border-fuchsia-200 transition-all duration-300 relative"
-    >
+    <article className="group block border border-gray-200 rounded-xl overflow-hidden bg-white hover:shadow-xl hover:border-fuchsia-200 transition-all duration-300 relative">
       <div className="absolute top-2 right-2 z-20">
+        {isThisInWishlist ? null : (
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              addToWishlist({
+                id: product.id,
+                title: product.title,
+                price: product.price,
+              });
+            }}
+            className="text-black p-2 rounded-full shadow hover:bg-pink-200 transition"
+            aria-label="Add to wishlist"
+          >
+            <BiHeart />
+          </button>
+        )}
         {!inCart ? (
           <button
             onClick={(e) => {
@@ -69,9 +86,7 @@ export default function ProductCard({ product }: { product: Product }) {
         )}
       </div>
 
-      <Link
-        to={`/product-details/${product.id}`}
-      >
+      <Link to={`/product-details/${product.id}`}>
         <figure className="relative p-4 flex items-center justify-center h-44 from-gray-50 to-white overflow-hidden">
           <img
             src={product.image}
@@ -95,10 +110,10 @@ export default function ProductCard({ product }: { product: Product }) {
             </span>
 
             {product.rating ? (
-              <div
-                className="flex items-center gap-1 text-xs bg-yellow-50 px-2 py-1 rounded-full"
-                >
-                <span className="text-yellow-500"><BiStar /></span>
+              <div className="flex items-center gap-1 text-xs bg-yellow-50 px-2 py-1 rounded-full">
+                <span className="text-yellow-500">
+                  <BiStar />
+                </span>
                 <span className="font-semibold text-gray-700">
                   {product.rating.rate}
                 </span>
